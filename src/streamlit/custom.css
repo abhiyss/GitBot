@@ -1,0 +1,9 @@
+div.stSpinner > div {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-testid="stExpander"] details {
+  border-style: none;
+}
