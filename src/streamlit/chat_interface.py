@@ -1,8 +1,14 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import streamlit as st
-from gitbot.chatbot import invoke_chatbot
+#from gitbot.src.chatbot import invoke_chatbot
+from chatbot import invoke_chatbot
 import boto3
 import pickle
-from gitbot.utils import get_indexed_agents
+#from gitbot.utils import get_indexed_agents
+from utils import get_indexed_agents
 
 
 def chat_interface():

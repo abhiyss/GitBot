@@ -1,7 +1,14 @@
 import streamlit as st
-from gitbot.utils import convert_str_to_list, get_indexed_agents
-from gitbot.models import EmbeddingModelDisplayNames, LLMModelDisplayNames
-from gitbot.main import (
+#from gitbot.utils import convert_str_to_list, get_indexed_agents
+#from gitbot.models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+#from gitbot.main import (
+#    agentMessage,
+#    streamlit_agent_create_endpoint,
+#    streamlit_agent_update_endpoint,
+#)
+from utils import convert_str_to_list, get_indexed_agents
+from models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+from main import (
     agentMessage,
     streamlit_agent_create_endpoint,
     streamlit_agent_update_endpoint,

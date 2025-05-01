@@ -1,17 +1,27 @@
 import streamlit as st
-from gitbot.models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+#from gitbot.models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+from models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+
 import boto3
 import pickle
 import json
-from gitbot.utils import convert_list_to_str, convert_str_to_list
-from gitbot.streamlit.utils import layout
-from gitbot.utils import (
+#from gitbot.utils import convert_list_to_str, convert_str_to_list
+#from gitbot.streamlit.utils import layout
+#from gitbot.utils import (
+#    get_indexed_agents,
+#    save_indexed_agents,
+#    delete_s3_agent_contents,
+#)
+from utils import convert_list_to_str, convert_str_to_list
+from streamlit.utils import layout
+from utils import (
     get_indexed_agents,
     save_indexed_agents,
     delete_s3_agent_contents,
 )
 import time
-from gitbot.main import agentMessage, streamlit_agent_update_endpoint
+#from gitbot.main import agentMessage, streamlit_agent_update_endpoint
+from main import agentMessage, streamlit_agent_update_endpoint
 
 
 @st.dialog("Rebuid agent")

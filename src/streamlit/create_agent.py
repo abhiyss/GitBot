@@ -1,8 +1,11 @@
 import streamlit as st
-from gitbot.models import EmbeddingModelDisplayNames, LLMModelDisplayNames
-from gitbot.utils import convert_list_to_str, convert_str_to_list
+#from gitbot.models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+#from gitbot.utils import convert_list_to_str, convert_str_to_list
+from models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+from utils import convert_list_to_str, convert_str_to_list
 
-from gitbot.streamlit.utils import layout
+#from gitbot.streamlit.utils import layout
+from streamlit.utils import layout
 
 
 def vector_embedding_creation_page():
