@@ -4,23 +4,30 @@ import os
 import json
 
 from environs import Env
-from gitbot.chatbot import invoke_chatbot
-from gitbot.vector_builder import build_vector
-from gitbot.github_extractor import build_txt_files
+#from gitbot.chatbot import invoke_chatbot
+#from gitbot.vector_builder import build_vector
+#from gitbot.github_extractor import build_txt_files
+
+from chatbot import invoke_chatbot
+from vector_builder import build_vector
+from github_extractor import build_txt_files
+
 from fastapi import FastAPI, BackgroundTasks, Response
 from fastapi.encoders import jsonable_encoder
 
 from pydantic import BaseModel
 from typing import Union, Optional
 
-from gitbot.models import (
+#from gitbot.models import (
+from models import (
     LLMModelDisplayNames,
     LLMModel,
     EmbeddingModel,
     EmbeddingModelDisplayNames,
 )
 
-from gitbot.utils import (
+#from gitbot.utils import (
+from utils1 import (
     get_indexed_agents, 
     is_agent_indexed, 
     get_model_id, 

@@ -12,12 +12,14 @@ from utils import get_indexed_agents
 
 
 def chat_interface():
-    with open("./gitbot/streamlit/custom.css") as css:
+##    with open("./gitbot/streamlit/custom.css") as css:
+    with open("./streamlit/custom.css") as css:
         st.markdown(f"<style>{css.read()}</style>", unsafe_allow_html=True)
     current_agent = None
     col1, col2, col3 = st.columns(3, vertical_alignment="center")
     with col1:
-        st.image("./gitbot/pages/L-Rocket-RGB.png", width=250)
+        #st.image("./gitbot/pages/L-Rocket-RGB.png", width=250)
+        st.image("./streamlit/L-Rocket-RGB.png", width=250)
     with col2:
         st.header("GitBot")
     with col3:
