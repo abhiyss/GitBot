@@ -12,9 +12,9 @@ import json
 #    save_indexed_agents,
 #    delete_s3_agent_contents,
 #)
-from utils import convert_list_to_str, convert_str_to_list
-from streamlit.utils import layout
-from utils import (
+from utils1 import convert_list_to_str, convert_str_to_list
+from utils import layout
+from utils1 import (
     get_indexed_agents,
     save_indexed_agents,
     delete_s3_agent_contents,
@@ -33,7 +33,8 @@ def rebuild_agent(agent_name):
             s3 = boto3.client("s3")
             config = (
                 s3.get_object(
-                    Bucket="sagemaker-us-east-2-534295958235",
+                    #Bucket="sagemaker-us-east-2-534295958235",
+                    Bucket="myprojects-2025",
                     Key=f"gitbot/{agent_name}/config.json",
                 )["Body"]
                 .read()
@@ -57,7 +58,8 @@ def edit_agent(agent_name):
     s3 = boto3.client("s3")
     config = (
         s3.get_object(
-            Bucket="sagemaker-us-east-2-534295958235",
+            #Bucket="sagemaker-us-east-2-534295958235",
+            Bucket="myprojects-2025",
             Key=f"gitbot/{agent_name}/config.json",
         )["Body"]
         .read()
@@ -112,7 +114,8 @@ def delete_agent(agent_name):
 
 
 def existing_agent_page():
-    with open("./gitbot/streamlit/custom.css") as css:
+    #with open("./gitbot/streamlit/custom.css") as css:
+    with open("./streamlit/custom.css") as css:
         st.markdown(f"<style>{css.read()}</style>", unsafe_allow_html=True)
         
     if "agents" not in st.session_state:

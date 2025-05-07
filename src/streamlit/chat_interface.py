@@ -19,7 +19,7 @@ def chat_interface():
     col1, col2, col3 = st.columns(3, vertical_alignment="center")
     with col1:
         #st.image("./gitbot/pages/L-Rocket-RGB.png", width=250)
-        st.image("./streamlit/Logo_gitbot1.png", width=250)
+        st.image("./streamlit/Logo_gitbot1.png", width=100)
     with col2:
         st.header("GitBot")
     with col3:
