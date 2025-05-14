@@ -67,6 +67,7 @@ def chat_interface():
         message1.write(prompt)
 
         with st.spinner("Thinking"):
+            print("Before chatbot")
             output = invoke_chatbot(
                 agent_name, prompt, st.session_state["chat_history"]
             )

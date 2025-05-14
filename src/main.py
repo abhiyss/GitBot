@@ -249,7 +249,9 @@ def agent_creation(
     prompt,
 ):
     env = Env()
+    env.read_env()  # this loads from .env
     auth_token = env.str("GITHUB_AUTH_TOKEN")
+    print("Loaded GitHub token:", bool(auth_token))
 
     try:
         agents = get_indexed_agents()
@@ -259,12 +261,18 @@ def agent_creation(
 
     if is_agent_indexed(agents, agent_name):
         raise ValueError(f"agent {agent_name} already exists.")
-
+    
+    print("Before embedding_model_id")
     embedding_model_id = get_model_id(
         embedding_model_name, EmbeddingModelDisplayNames, EmbeddingModel
     )
     llm_model_id = get_model_id(llm_model_name, LLMModelDisplayNames, LLMModel)
+    print("Emb model id: ", embedding_model_id)
+    print("LLM model name: ", llm_model_name)
+    print("LLM Model id: ", llm_model_id)
+    print("Prompt: ", prompt)
 
+    print("Before build_config")
     config = build_config(
         github_repos,
         include_branches,
@@ -279,18 +287,37 @@ def agent_creation(
         llm_model_id,
         prompt,
     )
-
+    print("Before build_txt_files")
+    #build_txt_files(
+    #    github_repos,
+    #    auth_token,
+    #    include_branches,
+    #    include_folders,
+    #    exclude_folders,
+    #    documentation_folder_path,
+    #    include_file_types,
+    #    exclude_file_types,
+    #)
+    
     build_txt_files(
-        github_repos,
-        auth_token,
-        include_branches,
-        include_folders,
-        exclude_folders,
-        documentation_folder_path,
-        include_file_types,
-        exclude_file_types,
+        repos=github_repos,
+        include_branches=include_branches,
+        include_folders=include_folders,
+        exclude_folders=exclude_folders,
+        documentation_folder_path=documentation_folder_path,
+        include_file_types=include_file_types,
+        exclude_file_types=exclude_file_types,
+        auth_token=auth_token,
     )
+    
+    print("Before build_vector")
+    #print("Agent name: ", agent_name)
+    print("Emb model name: ", embedding_model_id)
+    print("LLM model name: ", llm_model_name)
+    print("Prompt: ", prompt)
+    print("Auth token: ", auth_token)
     build_vector(agent_name, embedding_model_id, llm_model_name, prompt)
+    #build_vector(agent_name, embedding_model_id, llm_model_name, prompt, auth_token)
 
     save_config(agent_name, config)
 
