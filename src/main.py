@@ -250,7 +250,8 @@ def agent_creation(
 ):
     env = Env()
     env.read_env()  # this loads from .env
-    auth_token = env.str("GITHUB_AUTH_TOKEN")
+    #auth_token = env.str("GITHUB_AUTH_TOKEN")
+    auth_token=None
     print("Loaded GitHub token:", bool(auth_token))
 
     try:
@@ -341,7 +342,8 @@ def agent_update(
     is_llm_only_update
 ):
     env = Env()
-    auth_token = env.str("GITHUB_AUTH_TOKEN")
+    #auth_token = env.str("GITHUB_AUTH_TOKEN")
+    auth_token=None
 
     agents = get_indexed_agents()
 
