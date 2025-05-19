@@ -33,7 +33,6 @@ def rebuild_agent(agent_name):
             s3 = boto3.client("s3")
             config = (
                 s3.get_object(
-                    #Bucket="sagemaker-us-east-2-534295958235",
                     Bucket="myprojects-2025",
                     Key=f"gitbot/{agent_name}/config.json",
                 )["Body"]
@@ -58,7 +57,6 @@ def edit_agent(agent_name):
     s3 = boto3.client("s3")
     config = (
         s3.get_object(
-            #Bucket="sagemaker-us-east-2-534295958235",
             Bucket="myprojects-2025",
             Key=f"gitbot/{agent_name}/config.json",
         )["Body"]

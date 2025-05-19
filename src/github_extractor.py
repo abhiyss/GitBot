@@ -33,6 +33,7 @@ def build_txt_files(
     #if auth_token is None:
     #    auth = Auth.Token(auth_token)
 
+    #Added print statements for debugging
     print("🔐 auth_token type:", type(auth_token))
     print("🔐 auth_token value:", repr(auth_token))
     #auth = Auth.Token(auth_token) if auth_token else None
