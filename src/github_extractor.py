@@ -22,13 +22,23 @@ def build_txt_files(
     auth_token = None,
     files_dest_dir: str = "./tmp/",
 ):
+    ##Add code to default to main if blank values in passed to include_branches
+    include_branches = include_branches or ["main"] 
+    
     if documentation_folder_path is not None and documentation_folder_path[-1] != "/":
         documentation_folder_path += "/"
         
     # using an access token
-    if auth_token is None:
-        auth = Auth.Token(auth_token)
+    #auth = None
+    #if auth_token is None:
+    #    auth = Auth.Token(auth_token)
 
+    #Added print statements for debugging
+    print("🔐 auth_token type:", type(auth_token))
+    print("🔐 auth_token value:", repr(auth_token))
+    #auth = Auth.Token(auth_token) if auth_token else None
+    auth=None
+    
     if not os.path.exists(files_dest_dir):
         os.makedirs(files_dest_dir)
     else:
@@ -47,7 +57,7 @@ def build_txt_files(
             if element.type == "blob":
                 # If file is of type we want to exclude, skip it
                 if exclude_file_types is not None and any(
-                    file_type in os.path.join(rpo, path, element.path) for file_type in exclude_file_types
+                    file_type in os.path.join(repo, path, element.path) for file_type in exclude_file_types
                 ):
                     continue
                 # If file is of type we want to include, add it to the list
@@ -79,15 +89,25 @@ def build_txt_files(
 
     print(repos)
     for repo in repos:
-        substring = repo.split("https://github.com/")[1]
+        #substring = repo.split("https://github.com/")[1]
+        #org, repo = substring.split("/")[0], substring.split("/")[1]
+
+        substring = repo.strip().replace("https://github.com/", "").replace(".git", "")
         org, repo = substring.split("/")[0], substring.split("/")[1]
+        print("🔍 Parsed org:", org)
+        print("📁 Parsed repo:", repo)
+
+        g=Github()
 
         # Github Enterprise with custom hostname
-        if auth_token is None:
-            g = Github(base_url="https://github.com/api/v3")
-        else:
-            g = Github(auth=auth, base_url="https://github.com/api/v3")
-        repository = g.get_organization(org).get_repo(repo)
+        #if auth_token is None:
+        #    g = Github(base_url="https://github.com/api/v3")
+        #else:
+        #    g = Github(auth=auth, base_url="https://github.com/api/v3")
+
+        print("Attempting to access:", org, "/", repo)
+        #repository = g.get_user(org).get_repo(repo)
+        repository = g.get_repo(f"{org}/{repo}")
 
         files_dict = {}
         for branch_name in include_branches:
@@ -114,7 +134,8 @@ def build_txt_files(
                     rel_path = os.path.join(rel_path, folder_hierarchy[j])
                     if not os.path.exists(rel_path):
                         os.makedirs(rel_path)
-                if documentation_folder_path in new_file_path:
+                #if documentation_folder_path in new_file_path:
+                if documentation_folder_path and documentation_folder_path.strip() and documentation_folder_path in new_file_path:
                     url_path = new_file_path.split(documentation_folder_path)[1]
                     url_path = url_path.replace(".txt", "/")
                     url_path = f"https://github.com/pages/{org}/{repo}/" + url_path

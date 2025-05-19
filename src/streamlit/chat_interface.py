@@ -1,17 +1,25 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import streamlit as st
-from gitbot.chatbot import invoke_chatbot
+#from gitbot.src.chatbot import invoke_chatbot
+from chatbot import invoke_chatbot
 import boto3
 import pickle
-from gitbot.utils import get_indexed_agents
+#from gitbot.utils import get_indexed_agents
+from utils import get_indexed_agents
 
 
 def chat_interface():
-    with open("./gitbot/streamlit/custom.css") as css:
+##    with open("./gitbot/streamlit/custom.css") as css:
+    with open("./streamlit/custom.css") as css:
         st.markdown(f"<style>{css.read()}</style>", unsafe_allow_html=True)
     current_agent = None
     col1, col2, col3 = st.columns(3, vertical_alignment="center")
     with col1:
-        st.image("./gitbot/pages/L-Rocket-RGB.png", width=250)
+        #st.image("./gitbot/pages/L-Rocket-RGB.png", width=250)
+        st.image("./streamlit/Logo_gitbot1.png", width=100)
     with col2:
         st.header("GitBot")
     with col3:
@@ -59,6 +67,7 @@ def chat_interface():
         message1.write(prompt)
 
         with st.spinner("Thinking"):
+            print("Before chatbot")
             output = invoke_chatbot(
                 agent_name, prompt, st.session_state["chat_history"]
             )

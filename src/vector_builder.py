@@ -51,12 +51,12 @@ def build_vector(
     s3 = boto3.client("s3")
     s3.upload_file(
         Filename="./" + agent_name + "/index.faiss",
-        Bucket="sagemaker-us-east-2-534295958235",
+        Bucket="myprojects-2025",
         Key=f"gitbot/{agent_name}/index.faiss",
     )
     s3.upload_file(
         Filename="./" + agent_name + "/index.pkl",
-        Bucket="sagemaker-us-east-2-534295958235",
+        Bucket="myprojects-2025",
         Key=f"gitbot/{agent_name}/index.pkl",
     )
 

@@ -1,12 +1,20 @@
 import streamlit as st
-from gitbot.utils import convert_str_to_list, get_indexed_agents
-from gitbot.models import EmbeddingModelDisplayNames, LLMModelDisplayNames
-from gitbot.main import (
+#from gitbot.utils import convert_str_to_list, get_indexed_agents
+#from gitbot.models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+#from gitbot.main import (
+#    agentMessage,
+#    streamlit_agent_create_endpoint,
+#    streamlit_agent_update_endpoint,
+#)
+from utils1 import convert_str_to_list, get_indexed_agents
+from models import EmbeddingModelDisplayNames, LLMModelDisplayNames
+from main import (
     agentMessage,
     streamlit_agent_create_endpoint,
     streamlit_agent_update_endpoint,
 )
 import time
+import traceback
 
 
 def layout(
@@ -38,7 +46,7 @@ def layout(
     repos = st.text_input(
         "Link to Git Repo",
         current_repos,
-        placeholder="https://github.com/org/repo [separated by comma]",
+        placeholder="https://github.com/lshpaner/eda_toolkit",
     )
     repos_list = convert_str_to_list(repos)
 
@@ -46,7 +54,7 @@ def layout(
     include_branches = st.text_input(
         "Branches to include",
         current_include_branches,
-        placeholder="main [separate by comma]",
+        placeholder="main",
     )
     include_branches_list = convert_str_to_list(include_branches)
 
@@ -163,6 +171,7 @@ def layout(
                         "llm_model_name": llm_model_name,
                         "prompt": prompt,
                     }
+                    print("Dictionary values: ", dict_agent)
                     if is_create:
                         streamlit_agent_create_endpoint(
                             agentMessage(**dict_agent)
@@ -199,6 +208,10 @@ def layout(
                 if not is_create:
                     st.rerun()
             except Exception as e:
-                st.error(
-                    f"{e} - Please check the details provided!"
-                )
+                st.error(f"❌ Error: {e} - Please check the details provided!")
+                st.exception(e)  # shows stack trace in the Streamlit app
+                print("❌ Full traceback:")
+                traceback.print_exc()
+                #st.error(
+                #    f"{e} - Please check the details provided!"
+                #)

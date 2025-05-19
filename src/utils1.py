@@ -26,7 +26,8 @@ def convert_str_to_list(string):
 def get_indexed_agents():
     s3 = boto3.client("s3")
     agents = s3.get_object(
-        Bucket="sagemaker-us-east-2-534295958235",
+        #Bucket="sagemaker-us-east-2-534295958235",
+        Bucket="myprojects-2025",
         Key=f"gitbot/agents.pkl",
     )["Body"].read()
     agents = pickle.loads(agents)
@@ -50,7 +51,8 @@ def get_model_id(model_name, model_display_names, model_ids):
 def save_indexed_agents(agents):
     s3 = boto3.client("s3")
     s3.put_object(
-        Bucket="sagemaker-us-east-2-534295958235",
+        #Bucket="sagemaker-us-east-2-534295958235",
+        Bucket="myprojects-2025",
         Key=f"gitbot/agents.pkl",
         Body=pickle.dumps(agents),
     )
@@ -59,7 +61,8 @@ def save_indexed_agents(agents):
 def save_config(agent_name, config):
     s3 = boto3.client("s3")
     s3.put_object(
-        Bucket="sagemaker-us-east-2-534295958235",
+        #Bucket="sagemaker-us-east-2-534295958235",
+        Bucket="myprojects-2025",
         Key=f"gitbot/{agent_name}/config.json",
         Body=json.dumps(config),
     )
@@ -67,7 +70,8 @@ def save_config(agent_name, config):
 
 def delete_s3_agent_contents(agent_name):
     s3 = boto3.resource("s3")
-    bucket = s3.Bucket("sagemaker-us-east-2-534295958235")
+    #bucket = s3.Bucket("sagemaker-us-east-2-534295958235")
+    bucket = s3.Bucket("myprojects-2025")
     for obj in bucket.objects.filter(
         Prefix=f"gitbot/{agent_name}"
     ):

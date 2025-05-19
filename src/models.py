@@ -2,8 +2,10 @@ from enum import Enum
 
 
 class EmbeddingModel(Enum):
-    AMAZON_TITAN_V2 = "amazon.titan-embed-text-v2:0"
-    AMAZON_TITAN_V1 = "amazon.titan-embed-text-v1:0"
+    #AMAZON_TITAN_V2 = "amazon.titan-embed-text-v2:0"
+    #AMAZON_TITAN_V1 = "amazon.titan-embed-text-v1:0"
+    AMAZON_TITAN_V2 = "amazon.titan-embed-text-v1"
+    AMAZON_TITAN_V1 = "amazon.titan-embed-text-v1"
 
 
 class EmbeddingModelDisplayNames(Enum):
@@ -12,9 +14,13 @@ class EmbeddingModelDisplayNames(Enum):
 
 
 class LLMModel(Enum):
+    #CLAUDE_SONNET_3 = "anthropic.claude-3-sonnet-20240229-v1:0"
+    #CLAUDE_HAIKU_3 = "anthropic.claude-3-haiku-20240307-v1:0"
+    #MISTRAL_INSTRUCT_7B = "mistral.mistral-7b-instruct-v0:2"
     CLAUDE_SONNET_3 = "anthropic.claude-3-sonnet-20240229-v1:0"
-    CLAUDE_HAIKU_3 = "anthropic.claude-3-haiku-20240307-v1:0"
-    MISTRAL_INSTRUCT_7B = "mistral.mistral-7b-instruct-v0:2"
+    CLAUDE_HAIKU_3 = "anthropic.claude-3-sonnet-20240229-v1:0"
+    MISTRAL_INSTRUCT_7B = "anthropic.claude-3-sonnet-20240229-v1:0"
+    
 
 
 class LLMModelDisplayNames(Enum):

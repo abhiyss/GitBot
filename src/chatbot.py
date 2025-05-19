@@ -22,18 +22,21 @@ def load_embedding(bc, agent_name: str):
 
     s3 = boto3.client("s3")
     s3.download_file(
-        Bucket="sagemaker-us-east-2-534295958235",
+        #Bucket="sagemaker-us-east-2-534295958235",
+        Bucket="myprojects-2025",
         Key=f"gitbot/{agent_name}/index.faiss",
         Filename="./" + agent_name + "-chatbot/index.faiss",
     )
     s3.download_file(
-        Bucket="sagemaker-us-east-2-534295958235",
+        #Bucket="sagemaker-us-east-2-534295958235",
+        Bucket="myprojects-2025",
         Key=f"gitbot/{agent_name}/index.pkl",
         Filename="./" + agent_name + "-chatbot/index.pkl",
     )
     config = (
         s3.get_object(
-            Bucket="sagemaker-us-east-2-534295958235",
+            #Bucket="sagemaker-us-east-2-534295958235",
+            Bucket="myprojects-2025",
             Key=f"gitbot/{agent_name}/config.json",
         )["Body"]
         .read()
