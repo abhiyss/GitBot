@@ -22,6 +22,9 @@ def build_txt_files(
     auth_token = None,
     files_dest_dir: str = "./tmp/",
 ):
+    ##Add code to default to main if blank values in passed to include_branches
+    include_branches = include_branches or ["main"] 
+    
     if documentation_folder_path is not None and documentation_folder_path[-1] != "/":
         documentation_folder_path += "/"
         
@@ -32,7 +35,8 @@ def build_txt_files(
 
     print("🔐 auth_token type:", type(auth_token))
     print("🔐 auth_token value:", repr(auth_token))
-    auth = Auth.Token(auth_token) if auth_token else None
+    #auth = Auth.Token(auth_token) if auth_token else None
+    auth=None
     
     if not os.path.exists(files_dest_dir):
         os.makedirs(files_dest_dir)
