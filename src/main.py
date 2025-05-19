@@ -372,15 +372,25 @@ def agent_update(
 
     if not is_llm_only_update:
         build_txt_files(
-            github_repos,
-            auth_token,
-            include_branches,
-            include_folders,
-            exclude_folders,
-            documentation_folder_path,
-            include_file_types,
-            exclude_file_types,
+            #github_repos,
+            #auth_token,
+            #include_branches,
+            #include_folders,
+            #exclude_folders,
+            #documentation_folder_path,
+            #include_file_types,
+            #exclude_file_types,
+            ##NEW CODE - Below code added for testing
+            repos=github_repos,
+            include_branches=include_branches,
+            include_folders=include_folders,
+            exclude_folders=exclude_folders,
+            documentation_folder_path=documentation_folder_path,
+            include_file_types=include_file_types,
+            exclude_file_types=exclude_file_types,
+            auth_token=auth_token,
         )
+        
         build_vector(agent_name, 
                     embedding_model_id, llm_model_name, 
                     prompt)
